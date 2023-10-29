@@ -264,16 +264,3 @@ button {
   stroke: var(--color--current);
   fill: none;
 }
-
-.btn,
-.btn:link,
-.btn:visited {
-  background-color: var(--color--current);
-  border-radius: 100vw;
-  padding: 1rem 1.5rem;
-  color: var(--color--base--rgba);
-}
-
-.btn--full:hover,
-.btn--full:active {
-}

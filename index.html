@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Pomodoro</title>
   </head>
   <body>
-    <div class="app" data-curr-ff="1" data-curr-color="1">
+    <div class="app" data-curr-ff="1" data-curr-color="1" data-scroll="scroll">
       <main class="main">
         <div class="app__flex">
           <div class="logo__wrap">
@@ -46,12 +46,12 @@
                 ></circle>
               </svg>
               <span class="timer__text h1" data-time="0">00:00</span>
-              <span class="timer__control h3">Start</span>
+              <button class="timer__control h3">Start</button>
             </div>
           </div>
-          <div class="settings">
+          <button class="settings" data-settings-button>
             <svg
-              class="settings__icon"
+              class="settings__icon pe-none"
               xmlns="http://www.w3.org/2000/svg"
               width="28"
               height="28"
@@ -62,111 +62,138 @@
                 opacity=".5"
               />
             </svg>
-          </div>
-          <div class="modal" data-modal-state="closed">
-            <form action="" class="form">
+          </button>
+          <dialog class="modal" data-el-modal>
+            <form action="" class="form" data-form>
               <div class="form__top">
-                <span class="setting__heading">Settings</span>
-                <svg
-                  class="icon-close"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                >
-                  <path
-                    fill="#1E213F"
-                    fill-rule="evenodd"
-                    d="M11.95.636l1.414 1.414L8.414 7l4.95 4.95-1.414 1.414L7 8.414l-4.95 4.95L.636 11.95 5.586 7 .636 2.05 2.05.636 7 5.586l4.95-4.95z"
-                    opacity=".5"
-                  />
-                </svg>
+                <h2 class="setting__heading">Settings</h2>
+                <button data-close-modal class="close-btn">
+                  <svg
+                    class="icon-close pe-none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                  >
+                    <path
+                      fill="#1E213F"
+                      fill-rule="evenodd"
+                      d="M11.95.636l1.414 1.414L8.414 7l4.95 4.95-1.414 1.414L7 8.414l-4.95 4.95L.636 11.95 5.586 7 .636 2.05 2.05.636 7 5.586l4.95-4.95z"
+                      opacity=".5"
+                    />
+                  </svg>
+                </button>
               </div>
               <div class="form__bottom">
-                <h3>TIME (MINUTES)</h3>
-                <div class="input__flex">
-                  <div class="input">
-                    <label for="">pomodoro</label><input type="number" />
-                  </div>
-                  <div class="input">
-                    <label for="">short break</label><input type="number" />
-                  </div>
-                  <div class="input">
-                    <label for="">long break</label><input type="number" />
-                  </div>
-                </div>
-                <div class="divider"></div>
-                <div class="flex-selection">
-                  <h3>font</h3>
-                  <div class="flex-circles">
-                    <div class="type-circle" data-color-circle="active">
-                      <span>Aa</span>
+                <div class="form__card">
+                  <h3>TIME (MINUTES)</h3>
+                  <div class="input__flex">
+                    <div class="input">
+                      <label for="">pomodoro</label><input type="number" />
                     </div>
-                    <div class="type-circle" data-type-circle>
-                      <span>Aa</span>
+                    <div class="input">
+                      <label for="">short break</label><input type="number" />
                     </div>
-                    <div class="type-circle" data-type-circle>
-                      <span>Aa</span>
+                    <div class="input">
+                      <label for="">long break</label><input type="number" />
                     </div>
                   </div>
                 </div>
                 <div class="divider"></div>
-                <div class="flex-selection">
-                  <h3>color</h3>
-                  <div class="flex-circles">
-                    <div class="color-circle" data-type-circle="active">
-                      <svg
-                        class="checkmark"
-                        width="15"
-                        height="11"
-                        viewBox="0 0 15 11"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                <div class="form__card">
+                  <div class="flex-selection">
+                    <h3>font</h3>
+                    <div class="flex-circles">
+                      <button
+                        class="type-circle is--ff1"
+                        data-type-circle="active"
                       >
-                        <path
-                          d="M1 5.5L4.95263 9.45263L13.4053 1"
-                          stroke="#161932"
-                          stroke-width="2"
-                        />
-                      </svg>
+                        <span>Aa</span>
+                      </button>
+                      <button class="type-circle is--ff2" data-type-circle>
+                        <span>Aa</span>
+                      </button>
+                      <button class="type-circle is--ff3" data-type-circle>
+                        <span>Aa</span>
+                      </button>
                     </div>
-                    <div class="color-circle" data-color-circle>
-                      <svg
-                        class="checkmark"
-                        width="15"
-                        height="11"
-                        viewBox="0 0 15 11"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                  </div>
+                </div>
+                <div class="divider"></div>
+                <div class="form__card">
+                  <div class="flex-selection">
+                    <h3>color</h3>
+                    <div class="flex-circles">
+                      <select class="u-d-none" color-select>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                        <option value="3"></option>
+                      </select>
+                      <button
+                        class="color-circle is--color-1"
+                        data-color-circle="active"
                       >
-                        <path
-                          d="M1 5.5L4.95263 9.45263L13.4053 1"
-                          stroke="#161932"
-                          stroke-width="2"
-                        />
-                      </svg>
-                    </div>
-                    <div class="color-circle" data-color-circle>
-                      <svg
-                        class="checkmark"
-                        width="15"
-                        height="11"
-                        viewBox="0 0 15 11"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                        <svg
+                          class="checkmark"
+                          width="15"
+                          height="11"
+                          viewBox="0 0 15 11"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M1 5.5L4.95263 9.45263L13.4053 1"
+                            stroke="#161932"
+                            stroke-width="2"
+                          />
+                        </svg>
+                      </button>
+                      <button
+                        class="color-circle is--color-2"
+                        data-color-circle
                       >
-                        <path
-                          d="M1 5.5L4.95263 9.45263L13.4053 1"
-                          stroke="#161932"
-                          stroke-width="2"
-                        />
-                      </svg>
+                        <svg
+                          class="checkmark"
+                          width="15"
+                          height="11"
+                          viewBox="0 0 15 11"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M1 5.5L4.95263 9.45263L13.4053 1"
+                            stroke="#161932"
+                            stroke-width="2"
+                          />
+                        </svg>
+                      </button>
+                      <button
+                        class="color-circle is--color-3"
+                        data-color-circle
+                      >
+                        <svg
+                          class="checkmark"
+                          width="15"
+                          height="11"
+                          viewBox="0 0 15 11"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M1 5.5L4.95263 9.45263L13.4053 1"
+                            stroke="#161932"
+                            stroke-width="2"
+                          />
+                        </svg>
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-              <button class="btn">Apply</button>
+              <div class="absolute-btn-wrap">
+                <button type="submit" class="btn">Apply</button>
+              </div>
             </form>
-          </div>
+          </dialog>
         </div>
       </main>
     </div>
