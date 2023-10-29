@@ -10,6 +10,12 @@
   },
   "devDependencies": {
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-fonts": "^0.7.0"
+  },
+  "dependencies": {
+    "@fontsource-variable/kumbh-sans": "^5.0.13",
+    "@fontsource-variable/roboto-slab": "^5.0.17",
+    "@fontsource/space-mono": "^5.0.17"
   }
 }
