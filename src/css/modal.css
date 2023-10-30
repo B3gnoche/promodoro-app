@@ -45,6 +45,11 @@
   gap: 1.25rem;
 }
 
+.input {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Input reset */
 .input input {
   border: none;
@@ -153,8 +158,4 @@ input[type="number"]::-webkit-inner-spin-button {
   color: var(--color--white--rgba);
   border-radius: 100vw;
   padding: 1rem 3rem;
-}
-
-.btn--full:hover,
-.btn--full:active {
 }

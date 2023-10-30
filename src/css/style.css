@@ -257,10 +257,9 @@ button {
 }
 
 .circle {
-  stroke-dashoffset: 200;
-  stroke-dasharray: 1020;
   stroke-linecap: round;
   stroke-width: 10px;
   stroke: var(--color--current);
   fill: none;
+  /* transition: stroke-dashoffset 1s linear; */
 }

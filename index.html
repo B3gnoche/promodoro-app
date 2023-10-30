@@ -39,14 +39,20 @@
               <svg class="timer__circle">
                 <circle
                   class="circle"
-                  data-el="progress"
+                  data-progress-circle
                   r="160"
                   cx="50%"
                   cy="50%"
                 ></circle>
               </svg>
-              <span class="timer__text h1" data-time="0">00:00</span>
-              <button class="timer__control h3">Start</button>
+              <span class="timer__text h1" data-displayed-time>00:00</span>
+              <button
+                data-timer-toggle
+                data-timer="start"
+                class="timer__control h3"
+              >
+                Start
+              </button>
             </div>
           </div>
           <button class="settings" data-settings-button>
@@ -64,7 +70,7 @@
             </svg>
           </button>
           <dialog class="modal" data-el-modal>
-            <form action="" class="form" data-form>
+            <form id="settings-form" action="" class="form" data-form>
               <div class="form__top">
                 <h2 class="setting__heading">Settings</h2>
                 <button data-close-modal class="close-btn">
@@ -88,13 +94,16 @@
                   <h3>TIME (MINUTES)</h3>
                   <div class="input__flex">
                     <div class="input">
-                      <label for="">pomodoro</label><input type="number" />
+                      <label for="pomodoro">pomodoro</label
+                      ><input value="25" id="pomodoro" type="number" />
                     </div>
                     <div class="input">
-                      <label for="">short break</label><input type="number" />
+                      <label for="short-break">short break</label
+                      ><input value="5" id="short-break" type="number" />
                     </div>
                     <div class="input">
-                      <label for="">long break</label><input type="number" />
+                      <label for="long-break">long break</label
+                      ><input value="15" id="long-break" type="number" />
                     </div>
                   </div>
                 </div>
@@ -103,18 +112,18 @@
                   <div class="flex-selection">
                     <h3>font</h3>
                     <div class="flex-circles">
-                      <button
+                      <div
                         class="type-circle is--ff1"
                         data-type-circle="active"
                       >
                         <span>Aa</span>
-                      </button>
-                      <button class="type-circle is--ff2" data-type-circle>
+                      </div>
+                      <div class="type-circle is--ff2" data-type-circle>
                         <span>Aa</span>
-                      </button>
-                      <button class="type-circle is--ff3" data-type-circle>
+                      </div>
+                      <div class="type-circle is--ff3" data-type-circle>
                         <span>Aa</span>
-                      </button>
+                      </div>
                     </div>
                   </div>
                 </div>
