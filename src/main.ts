@@ -1,6 +1,7 @@
-import "./css/utilities.css";
-import "./css/style.css";
-import "./css/modal.css";
+import "./style.css";
+
+// App
+const app = document.querySelector("[data-app]");
 
 // Modal Elements
 const modal = document.querySelector("[data-el-modal]") as HTMLDialogElement;
@@ -12,6 +13,11 @@ const settingsForm = document.querySelector("[data-form]");
 const inputPomodoro = document.getElementById("pomodoro");
 const inputShortBreak = document.getElementById("short-break");
 const inputLongBreak = document.getElementById("long-break");
+let selectedColor = 1;
+let selectedFont = 1;
+// Type Buttons
+const typeButtons = document.querySelectorAll("[data-type-state]");
+const colorButtons = document.querySelectorAll("[data-color-circle]");
 
 // Timer Elements
 let pomodoroTime = 25;
@@ -97,7 +103,6 @@ function startTimer() {
 }
 
 document.addEventListener("click", (e) => {
-  console.log(e.target);
   // Open modal when settings button clicked
   if (e.target === settingsButton) {
     e.preventDefault();
@@ -105,6 +110,16 @@ document.addEventListener("click", (e) => {
   } else if (e.target === closeModalBtn) {
     e.preventDefault();
     modal?.close();
+  } else if (e.target && (e.target as Element).matches("[data-el-modal]")) {
+    const dialogDimensions = (e.target as Element).getBoundingClientRect();
+    if (
+      e.clientX < dialogDimensions.left ||
+      e.clientX > dialogDimensions.right ||
+      e.clientY < dialogDimensions.top ||
+      e.clientY > dialogDimensions.bottom
+    ) {
+      (e.target as HTMLDialogElement)?.close();
+    }
   } else if ((e.target as Element)?.matches("[data-timer='start']")) {
     // changle data-timer to equal pause
     timerToggle?.setAttribute("data-timer", "pause");
@@ -124,56 +139,45 @@ document.addEventListener("click", (e) => {
     selectedTime = "pomodoro";
     setTimer();
     setProgress(0);
+    timerPaused = true;
+    timerToggle?.setAttribute("data-timer", "start");
+    timerToggle!.textContent = "Start";
   } else if ((e.target as Element)?.matches("[data-short-break]")) {
     selectedTime = "short-break";
     setTimer();
     setProgress(0);
+    timerPaused = true;
+    timerToggle?.setAttribute("data-timer", "start");
+    timerToggle!.textContent = "Start";
   } else if ((e.target as Element)?.matches("[data-long-break]")) {
     selectedTime = "long-break";
     setTimer();
     setProgress(0);
+    timerPaused = true;
+    timerToggle?.setAttribute("data-timer", "start");
+    timerToggle!.textContent = "Start";
+  } else if ((e.target as Element)?.matches("[data-type-state]")) {
+    (typeButtons as NodeListOf<Element>).forEach((button) => {
+      button.setAttribute("data-type-state", "inactive");
+    });
+    (e.target as Element).setAttribute("data-type-state", "active");
+    selectedFont = Number((e.target as HTMLElement)?.dataset.ff);
+  } else if ((e.target as Element)?.matches("[data-color-circle]")) {
+    (colorButtons as NodeListOf<Element>).forEach((button) => {
+      button.setAttribute("data-color-circle", "inactive");
+    });
+    (e.target as Element).setAttribute("data-color-circle", "active");
+    selectedColor = Number((e.target as HTMLElement)?.dataset.color);
   }
 });
 
 // Listening to when the settings form is submitted
 settingsForm?.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log("submit");
+  pomodoroTime = Number((inputPomodoro as HTMLInputElement)?.value);
+  shortBreakTime = Number((inputShortBreak as HTMLInputElement)?.value);
+  longBreakTime = Number((inputLongBreak as HTMLInputElement)?.value);
+  app?.setAttribute("data-curr-color", `${selectedColor}`);
+  app?.setAttribute("data-curr-ff", `${selectedFont}`);
   modal?.close();
 });
-
-// TODO Create Function that changes input active for the circles
-
-// TODO Create Function that listens to whether the timer is a short or long break
-
-/*
-    Code Snippet for Opening and Closing the Modal from youtube video 
-https://www.youtube.com/watch?v=HBCyKOL-f2c 
-
-
-document.addEventListener('click', (e) => {
-  // Check if the clicked element is an open button
-  if (e.target.matches('[el="open-button"]')) {
-    // Find the next dialog sibling and open it
-    const nextDialog = e.target.nextElementSibling;
-    if (nextDialog) nextDialog.showModal();
-  }
-  // Check if the clicked element is a close button inside a dialog
-  else if (e.target.matches('[el="close-button"]')) {
-    // Find the closest dialog parent and close it
-    const dialog = e.target.closest('[el="dialog"]');
-    if (dialog) dialog.close();
-  }
-  else if (e.target.matches('[el="dialog"]')) {
-  	const dialogDimensions = e.target.getBoundingClientRect()
-    if (
-      e.clientX < dialogDimensions.left ||
-      e.clientX > dialogDimensions.right ||
-      e.clientY < dialogDimensions.top ||
-      e.clientY > dialogDimensions.bottom
-    ) {
-      e.target.close()
-    }
-  }
-});
-*/

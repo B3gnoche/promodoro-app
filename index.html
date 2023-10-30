@@ -2,12 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&family=Roboto+Slab:wght@700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pomodoro</title>
   </head>
   <body>
-    <div class="app" data-curr-ff="1" data-curr-color="1" data-scroll="scroll">
+    <div
+      class="app"
+      data-app
+      data-curr-ff="1"
+      data-curr-color="1"
+      data-scroll="scroll"
+    >
       <main class="main">
         <div class="app__flex">
           <div class="logo__wrap">
@@ -63,7 +75,6 @@
               <path
                 fill="#D7E0FF"
                 d="M26.965 17.682l-2.927-2.317c.055-.448.097-.903.097-1.365 0-.462-.042-.917-.097-1.365l2.934-2.317a.702.702 0 00.167-.896l-2.775-4.851a.683.683 0 00-.847-.301l-3.454 1.407a10.506 10.506 0 00-2.345-1.379l-.52-3.71A.716.716 0 0016.503 0h-5.55a.703.703 0 00-.687.588l-.52 3.71c-.847.357-1.63.819-2.345 1.379L3.947 4.27a.691.691 0 00-.847.301L.325 9.422a.705.705 0 00.167.896l2.927 2.317c-.055.448-.097.903-.097 1.365 0 .462.042.917.097 1.365L.492 17.682a.702.702 0 00-.167.896L3.1 23.429a.683.683 0 00.847.301L7.4 22.323a10.506 10.506 0 002.345 1.379l.52 3.71c.056.329.34.588.687.588h5.55a.703.703 0 00.687-.588l.52-3.71c.847-.357 1.631-.819 2.346-1.379l3.454 1.407c.313.119.673 0 .847-.301l2.775-4.851a.705.705 0 00-.167-.896zM13.73 18.9c-2.685 0-4.857-2.191-4.857-4.9 0-2.709 2.172-4.9 4.857-4.9 2.684 0 4.856 2.191 4.856 4.9 0 2.71-2.172 4.9-4.856 4.9z"
-                opacity=".5"
               />
             </svg>
           </button>
@@ -82,14 +93,13 @@
                       fill="#1E213F"
                       fill-rule="evenodd"
                       d="M11.95.636l1.414 1.414L8.414 7l4.95 4.95-1.414 1.414L7 8.414l-4.95 4.95L.636 11.95 5.586 7 .636 2.05 2.05.636 7 5.586l4.95-4.95z"
-                      opacity=".5"
                     />
                   </svg>
                 </button>
               </div>
               <div class="form__bottom">
                 <div class="form__card">
-                  <h3>TIME (MINUTES)</h3>
+                  <h3 class="h4">TIME (MINUTES)</h3>
                   <div class="input__flex">
                     <div class="input">
                       <label for="pomodoro">pomodoro</label
@@ -108,19 +118,28 @@
                 <div class="divider"></div>
                 <div class="form__card">
                   <div class="flex-selection">
-                    <h3>font</h3>
+                    <h3 class="h4">font</h3>
                     <div class="flex-circles">
                       <div
-                        class="type-circle is--ff1"
-                        data-type-circle="active"
+                        class="type-circle is--ff1 u-curosr-pointer"
+                        data-ff="1"
+                        data-type-state="active"
                       >
-                        <span>Aa</span>
+                        <span class="pe-none">Aa</span>
                       </div>
-                      <div class="type-circle is--ff2" data-type-circle>
-                        <span>Aa</span>
+                      <div
+                        class="type-circle is--ff2 u-curosr-pointer"
+                        data-type-state
+                        data-ff="2"
+                      >
+                        <span class="pe-none">Aa</span>
                       </div>
-                      <div class="type-circle is--ff3" data-type-circle>
-                        <span>Aa</span>
+                      <div
+                        class="type-circle is--ff3 u-curosr-pointer"
+                        data-type-state
+                        data-ff="3"
+                      >
+                        <span class="pe-none">Aa</span>
                       </div>
                     </div>
                   </div>
@@ -128,19 +147,15 @@
                 <div class="divider"></div>
                 <div class="form__card">
                   <div class="flex-selection">
-                    <h3>color</h3>
+                    <h3 class="h4">color</h3>
                     <div class="flex-circles">
-                      <select class="u-d-none" color-select>
-                        <option value="1"></option>
-                        <option value="2"></option>
-                        <option value="3"></option>
-                      </select>
-                      <button
-                        class="color-circle is--color-1"
+                      <div
+                        class="color-circle is--color-1 u-curosr-pointer"
+                        data-color="1"
                         data-color-circle="active"
                       >
                         <svg
-                          class="checkmark"
+                          class="checkmark pe-none"
                           width="15"
                           height="11"
                           viewBox="0 0 15 11"
@@ -153,13 +168,14 @@
                             stroke-width="2"
                           />
                         </svg>
-                      </button>
-                      <button
-                        class="color-circle is--color-2"
+                      </div>
+                      <div
+                        class="color-circle is--color-2 u-curosr-pointer"
+                        data-color="2"
                         data-color-circle
                       >
                         <svg
-                          class="checkmark"
+                          class="checkmark pe-none"
                           width="15"
                           height="11"
                           viewBox="0 0 15 11"
@@ -172,13 +188,14 @@
                             stroke-width="2"
                           />
                         </svg>
-                      </button>
-                      <button
-                        class="color-circle is--color-3"
+                      </div>
+                      <div
+                        class="color-circle is--color-3 u-curosr-pointer"
+                        data-color="3"
                         data-color-circle
                       >
                         <svg
-                          class="checkmark"
+                          class="checkmark pe-none"
                           width="15"
                           height="11"
                           viewBox="0 0 15 11"
@@ -191,7 +208,7 @@
                             stroke-width="2"
                           />
                         </svg>
-                      </button>
+                      </div>
                     </div>
                   </div>
                 </div>
