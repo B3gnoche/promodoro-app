@@ -102,6 +102,14 @@ function startTimer() {
   }, 1000);
 }
 
+const setTimerToStart = () => {
+  setTimer();
+  setProgress(0);
+  timerPaused = true;
+  timerToggle?.setAttribute("data-timer", "start");
+  timerToggle!.textContent = "Start";
+};
+
 document.addEventListener("click", (e) => {
   // Open modal when settings button clicked
   if (e.target === settingsButton) {
@@ -132,30 +140,16 @@ document.addEventListener("click", (e) => {
     timerPaused = true;
   } else if ((e.target as Element)?.matches("[data-timer='reset']")) {
     timerToggle?.setAttribute("data-timer", "start");
-    timerToggle!.textContent = "Start";
-    setTimer();
-    setProgress(percentageCircleTracker);
+    setTimerToStart();
   } else if ((e.target as Element)?.matches("[data-pomodoro]")) {
     selectedTime = "pomodoro";
-    setTimer();
-    setProgress(0);
-    timerPaused = true;
-    timerToggle?.setAttribute("data-timer", "start");
-    timerToggle!.textContent = "Start";
+    setTimerToStart();
   } else if ((e.target as Element)?.matches("[data-short-break]")) {
     selectedTime = "short-break";
-    setTimer();
-    setProgress(0);
-    timerPaused = true;
-    timerToggle?.setAttribute("data-timer", "start");
-    timerToggle!.textContent = "Start";
+    setTimerToStart();
   } else if ((e.target as Element)?.matches("[data-long-break]")) {
     selectedTime = "long-break";
-    setTimer();
-    setProgress(0);
-    timerPaused = true;
-    timerToggle?.setAttribute("data-timer", "start");
-    timerToggle!.textContent = "Start";
+    setTimerToStart();
   } else if ((e.target as Element)?.matches("[data-type-state]")) {
     (typeButtons as NodeListOf<Element>).forEach((button) => {
       button.setAttribute("data-type-state", "inactive");
@@ -173,6 +167,9 @@ document.addEventListener("click", (e) => {
 
 // Listening to when the settings form is submitted
 settingsForm?.addEventListener("submit", (e) => {
+  if (timerPaused) {
+    setTimer();
+  }
   e.preventDefault();
   pomodoroTime = Number((inputPomodoro as HTMLInputElement)?.value);
   shortBreakTime = Number((inputShortBreak as HTMLInputElement)?.value);
