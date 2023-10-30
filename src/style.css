@@ -180,6 +180,10 @@ button {
 .app[data-curr-ff="3"] {
   --font--current: var(--font--f--3);
 }
+.app[data-curr-ff="3"] h1,
+.app[data-curr-ff="3"] .h1 {
+  font-weight: 400;
+}
 
 @media screen and (max-width: 23.5rem) {
   .app {
@@ -319,9 +323,9 @@ button {
 
 .settings__icon {
   opacity: 0.5;
+  transition: opacity var(--speed) var(--curve);
 }
-
-.settings__icon:hover {
+.settings:hover .settings__icon {
   opacity: 1;
 }
 
@@ -377,16 +381,41 @@ button {
   flex-direction: column;
 }
 
+@media screen and (max-width: 33rem) {
+  .modal {
+    width: 90%;
+  }
+
+  .form__card .h4 {
+    text-align: center;
+  }
+
+  .input__flex {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .input label {
+    flex-shrink: 0;
+  }
+}
 /* Input reset */
 .input input {
+  display: inline-block;
   border: none;
   border-radius: 0.625rem;
   padding: 1rem;
   font-size: var(--font--s--main);
-  font-weight: var(--font--w--secondary);
+  font-weight: var(--font--w--main, 700);
   color: var(--color--base--rgba);
   background-color: var(--color--light-grey--rgba);
-  width: 8.75rem;
+  max-width: 8.25rem;
 }
 input[type="number"]::-webkit-inner-spin-button {
   opacity: 1;
@@ -417,7 +446,18 @@ input[type="number"]::-webkit-inner-spin-button {
   gap: 1rem;
 }
 
+@media screen and (max-width: 33rem) {
+  .flex-selection {
+    flex-direction: column;
+    gap: 1.125rem;
+  }
+  .flex-circles {
+    gap: 1.25rem;
+  }
+}
 .type-circle {
+  position: relative;
+  z-index: 1;
   width: var(--_circle--size);
   height: var(--_circle--size);
   display: grid;
@@ -429,6 +469,11 @@ input[type="number"]::-webkit-inner-spin-button {
 .type-circle[data-type-state="active"] {
   background-color: var(--color--base--rgba);
   color: var(--color--white--rgba);
+}
+
+.type-circle:hover .hover-circle,
+.color-circle:hover .hover-circle {
+  opacity: 1;
 }
 
 .type-circle.is--ff1 {
@@ -449,6 +494,18 @@ input[type="number"]::-webkit-inner-spin-button {
   border-radius: 100vw;
   display: grid;
   place-items: center;
+}
+
+.hover-circle {
+  pointer-events: none;
+  transition: opacity var(--speed) var(--curve);
+  z-index: 0;
+  position: absolute;
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 100vw;
+  border: solid 1px #eff1fa;
+  opacity: 0;
 }
 
 .color-circle.is--color-1 {
@@ -485,4 +542,9 @@ input[type="number"]::-webkit-inner-spin-button {
   color: var(--color--white--rgba);
   border-radius: 100vw;
   padding: 1rem 3rem;
+  transition: background-color var(--speed) var(--curve);
+}
+
+.btn:hover {
+  background-color: #f98d8d;
 }
