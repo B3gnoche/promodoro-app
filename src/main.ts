@@ -20,6 +20,8 @@ let longBreakTime = 15;
 let timerPaused = true;
 let selectedTime = "pomodoro";
 let currentTime: number;
+let startingTime: number;
+let percentageCircleTracker = 0;
 
 const timerToggle = document.querySelector("[data-timer-toggle]");
 const displayedTime = document.querySelector("[data-displayed-time]");
@@ -37,17 +39,20 @@ const minsToSeconds = (min: number) => min * 60;
 const setDisplayedTime = (time: string) => (displayedTime!.textContent = time);
 
 const setTimer = () => {
-  if ((selectedTime = "pomodoro")) {
+  if (selectedTime === "pomodoro") {
     let pomodoroTimeInSeconds = minsToSeconds(pomodoroTime);
     currentTime = pomodoroTimeInSeconds;
+    startingTime = currentTime;
     setDisplayedTime(formatTime(pomodoroTimeInSeconds));
-  } else if ((selectedTime = "short-break")) {
+  } else if (selectedTime === "short-break") {
     let shortBreakTimeInSeconds = minsToSeconds(shortBreakTime);
     currentTime = shortBreakTimeInSeconds;
+    startingTime = currentTime;
     setDisplayedTime(formatTime(shortBreakTimeInSeconds));
-  } else if ((selectedTime = "long-break")) {
+  } else if (selectedTime === "long-break") {
     let longBreakTimeInSeconds = minsToSeconds(longBreakTime);
     currentTime = longBreakTimeInSeconds;
+    startingTime = currentTime;
     setDisplayedTime(formatTime(longBreakTimeInSeconds));
   }
 };
@@ -69,7 +74,6 @@ const setProgress = (percent: number) =>
   }`);
 
 function startTimer() {
-  let startingTime = currentTime;
   timerPaused = false;
 
   const intervalId = setInterval(() => {
@@ -84,11 +88,10 @@ function startTimer() {
       timerToggle?.setAttribute("data-timer", "reset");
       console.log("Timer done!");
     } else {
-      console.log(currentTime);
       setDisplayedTime(formatTime(currentTime));
-      const percentTimeLeft =
+      percentageCircleTracker =
         ((startingTime - currentTime) / startingTime) * 100;
-      setProgress(percentTimeLeft);
+      setProgress(percentageCircleTracker);
     }
   }, 1000);
 }
@@ -99,14 +102,10 @@ document.addEventListener("click", (e) => {
   if (e.target === settingsButton) {
     e.preventDefault();
     modal?.showModal();
-  }
-  // Close modal when close button clicked
-  else if (e.target === closeModalBtn) {
+  } else if (e.target === closeModalBtn) {
     e.preventDefault();
     modal?.close();
-  }
-  // Timer Toggle
-  else if ((e.target as Element)?.matches("[data-timer='start']")) {
+  } else if ((e.target as Element)?.matches("[data-timer='start']")) {
     // changle data-timer to equal pause
     timerToggle?.setAttribute("data-timer", "pause");
     timerToggle!.textContent = "Pause";
@@ -120,44 +119,34 @@ document.addEventListener("click", (e) => {
     timerToggle?.setAttribute("data-timer", "start");
     timerToggle!.textContent = "Start";
     setTimer();
+    setProgress(percentageCircleTracker);
+  } else if ((e.target as Element)?.matches("[data-pomodoro]")) {
+    selectedTime = "pomodoro";
+    setTimer();
+    setProgress(0);
+  } else if ((e.target as Element)?.matches("[data-short-break]")) {
+    selectedTime = "short-break";
+    setTimer();
+    setProgress(0);
+  } else if ((e.target as Element)?.matches("[data-long-break]")) {
+    selectedTime = "long-break";
+    setTimer();
+    setProgress(0);
   }
 });
 
 // Listening to when the settings form is submitted
 settingsForm?.addEventListener("submit", (e) => {
   e.preventDefault();
-
   console.log("submit");
   modal?.close();
 });
 
 // TODO Create Function that changes input active for the circles
 
-// TODO Create Function that Starts, Pauses and Resets the Timer
-
 // TODO Create Function that listens to whether the timer is a short or long break
 
 /*
-
-
-
-Code to Set the Progress of the Bar from youtube video
-https://www.youtube.com/watch?v=f7XUZFexSgo&list=LL&index=1
-
-let progressCircle = document.querySelector(".progress");
-    let radius = progressCircle.r.baseVal.value;
-    //circumference of a circle = 2πr;
-    let circumference = radius * 2 * Math.PI;
-    progressCircle.style.strokeDasharray = circumference;
-
-    //0 to 100
-    setProgress(95);
-
-    function setProgress(percent) {
-        progressCircle.style.strokeDashoffset = circumference - (percent / 100) * circumference;
-    } 
-    
-    
     Code Snippet for Opening and Closing the Modal from youtube video 
 https://www.youtube.com/watch?v=HBCyKOL-f2c 
 

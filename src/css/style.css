@@ -249,6 +249,10 @@ button {
   width: 21.2rem;
 }
 
+/* .timer__inner:has([data-timer="pause"]) .circle {
+  transition: stroke-dashoffset 1s linear;
+} */
+
 .timer__control {
   position: absolute;
   left: 50%;
