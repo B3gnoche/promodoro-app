@@ -167,13 +167,13 @@ document.addEventListener("click", (e) => {
 
 // Listening to when the settings form is submitted
 settingsForm?.addEventListener("submit", (e) => {
-  if (timerPaused) {
-    setTimer();
-  }
   e.preventDefault();
   pomodoroTime = Number((inputPomodoro as HTMLInputElement)?.value);
   shortBreakTime = Number((inputShortBreak as HTMLInputElement)?.value);
   longBreakTime = Number((inputLongBreak as HTMLInputElement)?.value);
+  if (timerPaused) {
+    setTimer();
+  }
   app?.setAttribute("data-curr-color", `${selectedColor}`);
   app?.setAttribute("data-curr-ff", `${selectedFont}`);
   modal?.close();
