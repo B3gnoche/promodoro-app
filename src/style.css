@@ -326,7 +326,8 @@ button {
     transform: scale(0.8);
   }
 
-  .menu {
+  .menu,
+  .modal {
     transform: scale(0.9);
   }
 }
