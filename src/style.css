@@ -321,6 +321,13 @@ button {
   /* transition: stroke-dashoffset 1s linear; */
 }
 
+@media screen and (max-width: 27rem) {
+  .timer,
+  .menu {
+    transform: scale(0.8);
+  }
+}
+
 .settings__icon {
   opacity: 0.5;
   transition: opacity var(--speed) var(--curve);

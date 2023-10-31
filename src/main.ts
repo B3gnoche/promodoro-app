@@ -172,7 +172,7 @@ settingsForm?.addEventListener("submit", (e) => {
   shortBreakTime = Number((inputShortBreak as HTMLInputElement)?.value);
   longBreakTime = Number((inputLongBreak as HTMLInputElement)?.value);
   if (timerPaused) {
-    setTimer();
+    setTimerToStart();
   }
   app?.setAttribute("data-curr-color", `${selectedColor}`);
   app?.setAttribute("data-curr-ff", `${selectedFont}`);
