@@ -102,16 +102,143 @@
                   <h3 class="h4">TIME (MINUTES)</h3>
                   <div class="input__flex">
                     <div class="input">
-                      <label for="pomodoro">pomodoro</label
-                      ><input value="25" id="pomodoro" type="number" />
+                      <label for="pomodoro">pomodoro</label>
+                      <div class="input__wrap">
+                        <input value="25" id="pomodoro" type="number" />
+
+                        <div class="input__arrows">
+                          <button
+                            type="button"
+                            onclick="document.querySelector('#pomodoro').stepUp()"
+                            class="input__arrow"
+                          >
+                            <svg
+                              width="14"
+                              height="7"
+                              viewBox="0 0 14 7"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M1 6L7 2L13 6"
+                                stroke="#1E213F"
+                                stroke-width="2"
+                              />
+                            </svg>
+                          </button>
+                          <button
+                            type="button"
+                            class="input__arrow"
+                            onclick="document.querySelector('#pomodoro').stepDown()"
+                          >
+                            <svg
+                              width="14"
+                              height="7"
+                              viewBox="0 0 14 7"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M1 1L7 5L13 1"
+                                stroke="#1E213F"
+                                stroke-width="2"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
                     </div>
                     <div class="input">
-                      <label for="short-break">short break</label
-                      ><input value="5" id="short-break" type="number" />
+                      <label for="short-break">short break</label>
+                      <div class="input__wrap">
+                        <input value="5" id="short-break" type="number" />
+                        <div class="input__arrows">
+                          <button
+                            type="button"
+                            onclick="document.querySelector('#short-break').stepUp()"
+                            class="input__arrow"
+                          >
+                            <svg
+                              width="14"
+                              height="7"
+                              viewBox="0 0 14 7"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M1 6L7 2L13 6"
+                                stroke="#1E213F"
+                                stroke-width="2"
+                              />
+                            </svg>
+                          </button>
+                          <button
+                            type="button"
+                            class="input__arrow"
+                            onclick="document.querySelector('#short-break').stepDown()"
+                          >
+                            <svg
+                              width="14"
+                              height="7"
+                              viewBox="0 0 14 7"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M1 1L7 5L13 1"
+                                stroke="#1E213F"
+                                stroke-width="2"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
                     </div>
                     <div class="input">
-                      <label for="long-break">long break</label
-                      ><input value="15" id="long-break" type="number" />
+                      <label for="long-break">long break</label>
+                      <div class="input__wrap">
+                        <input value="15" id="long-break" type="number" />
+                        <div class="input__arrows">
+                          <button
+                            type="button"
+                            onclick="document.querySelector('#long-break').stepUp()"
+                            class="input__arrow"
+                          >
+                            <svg
+                              width="14"
+                              height="7"
+                              viewBox="0 0 14 7"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M1 6L7 2L13 6"
+                                stroke="#1E213F"
+                                stroke-width="2"
+                              />
+                            </svg>
+                          </button>
+                          <button
+                            type="button"
+                            class="input__arrow"
+                            onclick="document.querySelector('#long-break').stepDown()"
+                          >
+                            <svg
+                              width="14"
+                              height="7"
+                              viewBox="0 0 14 7"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M1 1L7 5L13 1"
+                                stroke="#1E213F"
+                                stroke-width="2"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

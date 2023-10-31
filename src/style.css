@@ -247,10 +247,6 @@ button {
   color: var(--color--base--rgba);
 }
 
-.text-btn[data-type="button"]:hover {
-  transition: all var(--speed) ease;
-}
-
 .text-btn:hover {
   opacity: 1;
 }
@@ -392,8 +388,43 @@ button {
 }
 
 .input {
+  position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.input__wrap {
+  position: relative;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.input__arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+}
+
+.input__arrow {
+  stroke: var(--color--base--rgba);
+  opacity: 0.3;
+  transition: opacity var(--speed) var(--curve);
+}
+.input__arrow:hover {
+  opacity: 1;
 }
 
 @media screen and (max-width: 33rem) {
