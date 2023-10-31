@@ -330,6 +330,10 @@ button {
   .modal {
     transform: scale(0.9);
   }
+
+  .text-btn {
+    padding: 0.6rem 0.7rem;
+  }
 }
 
 .settings__icon {
