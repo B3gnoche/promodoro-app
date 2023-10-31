@@ -322,9 +322,12 @@ button {
 }
 
 @media screen and (max-width: 27rem) {
-  .timer,
-  .menu {
+  .timer {
     transform: scale(0.8);
+  }
+
+  .menu {
+    transform: scale(0.9);
   }
 }
 
